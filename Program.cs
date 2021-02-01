@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace RemoteDiskControl
@@ -18,7 +19,11 @@ namespace RemoteDiskControl
             Console.WriteLine("Files for sending: ");
             SendFiles(filePath, "");
 
-            Console.WriteLine("Hello");
+            while(true)
+            {
+                Console.WriteLine("+");
+                    Thread.Sleep(1000);
+            }
             
             Console.ReadKey();
         }
@@ -35,7 +40,7 @@ namespace RemoteDiskControl
             IRemoteDiskControl yandexControl = new YandexDiskController();
             foreach (var file in fileList)
             {
-               var status =  await yandexControl.PutFileOnDiskAsync(file, @"test\");
+               var status =  await Task.Run(() => yandexControl.PutFileOnDiskAsync(file, @"test\"));
                 Console.WriteLine($"{file}: status: {status}");
             }
 

@@ -12,6 +12,6 @@ namespace RemoteDiskControl.Interfaces
 
         string GetDiskInfo();
 
-        Task<string> PutFileOnDiskAsync(string filesPath, string diskPath);
+        string PutFileOnDiskAsync(string filesPath, string diskPath);
     }
 }

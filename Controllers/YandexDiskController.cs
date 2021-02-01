@@ -77,10 +77,10 @@ namespace RemoteDiskControl.Controllers
             }
         }
 
-        public async Task<string> PutFileOnDiskAsync(string directoryPath, string diskPath)
+        public string PutFileOnDiskAsync(string directoryPath, string diskPath)
         {
-            var x = await Task.Run(() => PutFiles(directoryPath, diskPath));
-            return x;
+            
+            return PutFiles(directoryPath, diskPath);
         }
 
         //первый реквест на сервер. Получаем ссылку для загрузки файла
@@ -120,7 +120,6 @@ namespace RemoteDiskControl.Controllers
         
         private string PutFiles(string filesPath, string storagePath)
         {
-            string responseBodyText = string.Empty; ;
             try
             {
                 //geting reference for uploading file
@@ -140,7 +139,7 @@ namespace RemoteDiskControl.Controllers
 
                 using(var response = putFilesRequest.GetResponse())
                 {
-                    return response.Headers["StatusCode"];
+                    return $"{((HttpWebResponse)response).StatusCode} {((HttpWebResponse)response).StatusDescription} ";
                 }
                
             }
@@ -148,7 +147,6 @@ namespace RemoteDiskControl.Controllers
             {
                 return ex.Message;
             }
-            return responseBodyText;
         }
 
         /// <summary>
