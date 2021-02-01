@@ -31,7 +31,7 @@ namespace RemoteDiskControl.Controllers
 
         public YandexDiskController()
         {
-            Token = "AgAAAABP_YRRAADLW61MZ7ecHkvjmhyCKiWucUg";
+            Token = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
         }
 
         public YandexDiskController(string id, string password):this()
