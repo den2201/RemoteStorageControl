@@ -13,11 +13,11 @@ namespace RemoteDiskControl
     class Program 
     {
         const string filePath = "c:/temp/";
-
+        const string storagePathToSave = "test/";
         static  void Main(string[] args)
         {
             Console.WriteLine("Files for sending: ");
-            SendFiles(filePath, "");
+            SendFiles(filePath, storagePathToSave);
 
             while(true)
             {
@@ -40,7 +40,7 @@ namespace RemoteDiskControl
             IRemoteDiskControl yandexControl = new YandexDiskController();
             foreach (var file in fileList)
             {
-               var status =  await Task.Run(() => yandexControl.PutFileOnDiskAsync(file, @"test\"));
+               var status =  await Task.Run(() => yandexControl.PutFileOnDiskAsync(file, storagePath));
                 Console.WriteLine($"{file}: status: {status}");
             }
 

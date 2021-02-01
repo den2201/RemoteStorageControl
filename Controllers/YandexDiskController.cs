@@ -91,8 +91,8 @@ namespace RemoteDiskControl.Controllers
         {
            var urlPath = FileHelpers.GetFilNameFromPathString(localFfilePath);
 
-            //if (!string.IsNullOrEmpty(putToPath))
-            //    urlPath = putToPath + urlPath;
+            if (!string.IsNullOrEmpty(putToPath))
+                urlPath = putToPath + urlPath;
 
             string url =$"https://cloud-api.yandex.net/v1/disk/resources/upload?path="+ urlPath;
             var request = CreateRequest(httpMethod.GET, url);
